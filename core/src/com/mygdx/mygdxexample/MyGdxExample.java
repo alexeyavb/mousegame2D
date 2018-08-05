@@ -26,32 +26,32 @@ public class MyGdxExample extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		mouseTexture = new Texture(Gdx.files.internal("assets/mouse.png"));
+		mouseTexture = new Texture(("mouse.png"));
 		mouseX = 20; mouseY = 20;
 
-		cheeseTexture = new Texture(Gdx.files.internal("assets/cheese.png"));
+		cheeseTexture = new Texture(("cheese.png"));
 		cheeseX = 400; cheeseY = 400;
 
-		floorTexture = new Texture(Gdx.files.internal("assets/floor.png"));
-		winMsg = new Texture(Gdx.files.internal("assets/you-win.png"));
+		floorTexture = new Texture(("floor.png"));
+		winMsg = new Texture(("youwin.png"));
 
 		win = false;
 	}
 
 	private void CheckUserInputProc(){
 		if(Gdx.input.isKeyPressed(Keys.LEFT))
-			mouseX++;
-		if(Gdx.input.isKeyPressed(Keys.RIGHT))
 			mouseX--;
+		if(Gdx.input.isKeyPressed(Keys.RIGHT))
+			mouseX++;
 		if(Gdx.input.isKeyPressed(Keys.UP))
 			mouseY++;
 		if(Gdx.input.isKeyPressed(Keys.DOWN))
 			mouseY--;
 
-		win = ((mouseX > cheeseX)
-				&& (mouseX + mouseTexture.getWidth() < cheeseX + cheeseTexture.getWidth())
-				&& (mouseY > cheeseY)
-				&& (mouseY + mouseTexture.getHeight() < cheeseY + cheeseTexture.getHeight()) ) ? true:false;
+		win = ((mouseX < cheeseX)
+				&& (mouseX + mouseTexture.getWidth() == cheeseX + cheeseTexture.getWidth())
+				&& (mouseY < cheeseY)
+				&& (mouseY + mouseTexture.getHeight() > cheeseY + cheeseTexture.getHeight()) ) ? true:false;
 	}
 	@Override
 	public void render () {
